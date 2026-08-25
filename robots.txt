@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ahmadnaeemakhtar403-cmd.github.io/Image-to-PDF/sitemap.xml
