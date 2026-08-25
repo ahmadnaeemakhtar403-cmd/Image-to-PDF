@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Free Image to PDF converter. Convert JPG, PNG and WEBP images to PDF directly in your browser.">
+<title>Image to PDF — Free Online Converter</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#f5f7fb;color:#172033}
+header{background:#fff;border-bottom:1px solid #e7eaf0;position:sticky;top:0;z-index:10}.nav{max-width:1100px;margin:auto;padding:16px 20px;display:flex;align-items:center;justify-content:space-between}.brand{font-weight:800;font-size:21px;color:#3157d5}.nav a{color:#4d5668;text-decoration:none;margin-left:20px;font-size:14px}
+.hero{max-width:900px;margin:55px auto 25px;text-align:center;padding:0 20px}.hero h1{font-size:clamp(34px,6vw,56px);margin:0 0 12px;letter-spacing:-1.8px}.hero p{color:#697386;font-size:17px;margin:0 auto;max-width:650px;line-height:1.6}
+.app{max-width:900px;margin:28px auto 60px;padding:0 20px}.drop{background:#fff;border:2px dashed #aeb9d2;border-radius:20px;padding:55px 20px;text-align:center;transition:.2s;cursor:pointer}.drop.drag{border-color:#3157d5;background:#f0f4ff}.drop h2{margin:12px 0 7px;font-size:24px}.drop p{color:#737d90;margin:0 0 20px}.btn{border:0;border-radius:10px;padding:12px 18px;font-weight:700;cursor:pointer;background:#3157d5;color:#fff}.btn.secondary{background:#edf1fa;color:#26334d}.btn:disabled{opacity:.45;cursor:not-allowed}.icon{font-size:48px}.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:#fff;padding:15px;border-radius:14px;margin-top:18px;box-shadow:0 4px 18px #1d31520d}.toolbar label{font-size:13px;color:#5c6679}.toolbar select{margin-left:5px;padding:9px;border:1px solid #d8deea;border-radius:8px;background:#fff}.files{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin-top:18px}.card{background:#fff;border-radius:13px;padding:10px;box-shadow:0 4px 18px #1d31520d;position:relative}.card img{width:100%;height:130px;object-fit:contain;background:#f5f7fb;border-radius:8px}.card .name{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:8px 2px 5px}.actions{display:flex;gap:5px}.mini{flex:1;padding:7px 5px;border:0;border-radius:7px;background:#edf1fa;cursor:pointer}.remove{color:#b3261e}.empty{text-align:center;color:#8992a3;padding:25px;grid-column:1/-1}.info{max-width:900px;margin:0 auto 55px;padding:0 20px}.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}.info-box{background:#fff;padding:22px;border-radius:15px}.info-box h3{margin-top:0}.info-box p{color:#697386;line-height:1.55;font-size:14px}.faq{background:#fff;border-radius:15px;padding:22px;margin-top:20px}.faq details{padding:12px 0;border-bottom:1px solid #edf0f5}.faq details:last-child{border:0}.faq summary{cursor:pointer;font-weight:700}.faq p{color:#697386;line-height:1.6}.ad{max-width:728px;height:90px;border:1px dashed #cbd2df;border-radius:10px;margin:25px auto;color:#9aa3b2;display:flex;align-items:center;justify-content:center;font-size:12px}footer{background:#172033;color:#cbd2df;padding:35px 20px}.foot{max-width:900px;margin:auto;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.foot a{color:#cbd2df;margin-right:15px}.note{font-size:12px;color:#8992a3;margin-top:12px}@media(max-width:600px){.nav a{margin-left:9px;font-size:12px}.hero{margin-top:35px}.drop{padding:40px 15px}.toolbar{align-items:stretch}.toolbar .btn{width:100%}}
+</style>
+</head>
+<body>
+<header><nav class="nav"><div class="brand">ImageToPDF</div><div><a href="#how">How it works</a><a href="#faq">FAQ</a></div></nav></header>
+
+<main>
+<section class="hero">
+<h1>Convert Images to PDF</h1>
+<p>Turn JPG, PNG and WEBP images into a PDF in seconds. Free, simple and designed for mobile.</p>
+</section>
+
+<div class="ad">Advertisement</div>
+
+<section class="app" aria-label="Image to PDF converter">
+<div class="drop" id="drop">
+<div class="icon">🖼️</div>
+<h2>Drop your images here</h2>
+<p>or choose images from your device</p>
+<button class="btn" id="choose">Choose Images</button>
+<input id="files" type="file" accept="image/jpeg,image/png,image/webp" multiple hidden>
+</div>
+
+<div class="toolbar">
+<label>Page <select id="page"><option value="a4">A4</option><option value="letter">Letter</option><option value="original">Original ratio</option></select></label>
+<label>Orientation <select id="orientation"><option value="portrait">Portrait</option><option value="landscape">Landscape</option></select></label>
+<label>Fit <select id="fit"><option value="contain">Fit image</option><option value="cover">Fill page</option></select></label>
+<button class="btn secondary" id="clear">Clear</button>
+<button class="btn" id="make" disabled>Download PDF</button>
+</div>
+
+<div class="files" id="preview"><div class="empty">Your selected images will appear here.</div></div>
+<p class="note">Your images are processed in your browser. This demo does not upload them to a server.</p>
+</section>
+
+<section class="info" id="how">
+<h2>How to convert images to PDF</h2>
+<div class="info-grid">
+<div class="info-box"><h3>1. Select images</h3><p>Choose one or multiple JPG, PNG or WEBP images from your phone or computer.</p></div>
+<div class="info-box"><h3>2. Arrange them</h3><p>Use the arrows to change the order before creating your PDF.</p></div>
+<div class="info-box"><h3>3. Download</h3><p>Select your page settings and tap Download PDF. The PDF is generated in your browser.</p></div>
+</div>
+<div class="faq" id="faq"><h2>Frequently asked questions</h2>
+<details open><summary>Is this image to PDF converter free?</summary><p>Yes. This website is designed as a free browser-based converter.</p></details>
+<details><summary>Are my images uploaded?</summary><p>In this version, images are processed locally by your browser rather than uploaded to a conversion server.</p></details>
+<details><summary>Which image formats are supported?</summary><p>JPG/JPEG, PNG and WEBP are supported.</p></details>
+<details><summary>Can I convert multiple images?</summary><p>Yes. Select multiple images and they will be placed into the PDF in the order shown.</p></details>
+</div>
+</section>
+</main>
+
+<footer><div class="foot"><div><strong>ImageToPDF</strong><div class="note">Free browser-based image conversion.</div></div><div><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="contact.html">Contact</a></div></div></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+const input=document.getElementById('files'),drop=document.getElementById('drop'),preview=document.getElementById('preview'),make=document.getElementById('make');
+let items=[];
+
+document.getElementById('choose').onclick=e=>{e.stopPropagation();input.click()};
+drop.onclick=e=>{if(e.target.id!=='choose') input.click()};
+input.onchange=e=>addFiles([...e.target.files]);
+['dragenter','dragover'].forEach(x=>drop.addEventListener(x,e=>{e.preventDefault();drop.classList.add('drag')}));
+['dragleave','drop'].forEach(x=>drop.addEventListener(x,e=>{e.preventDefault();drop.classList.remove('drag')}));
+drop.addEventListener('drop',e=>addFiles([...e.dataTransfer.files]));
+
+function addFiles(files){
+ const good=files.filter(f=>f.type.startsWith('image/'));
+ good.forEach(f=>items.push({file:f,url:URL.createObjectURL(f)}));
+ render();
+}
+function render(){
+ preview.innerHTML='';
+ if(!items.length){preview.innerHTML='<div class="empty">Your selected images will appear here.</div>';make.disabled=true;return}
+ items.forEach((it,i)=>{
+  const c=document.createElement('div');c.className='card';
+  c.innerHTML=`<img src="${it.url}" alt=""><div class="name" title="${escapeHtml(it.file.name)}">${escapeHtml(it.file.name)}</div>
+  <div class="actions"><button class="mini" ${i===0?'disabled':''} onclick="move(${i},-1)">←</button>
+  <button class="mini" ${i===items.length-1?'disabled':''} onclick="move(${i},1)">→</button>
+  <button class="mini remove" onclick="removeItem(${i})">×</button></div>`;
+  preview.appendChild(c);
+ });
+ make.disabled=false;
+}
+function move(i,d){const j=i+d;if(j<0||j>=items.length)return;[items[i],items[j]]=[items[j],items[i]];render()}
+function removeItem(i){URL.revokeObjectURL(items[i].url);items.splice(i,1);render()}
+document.getElementById('clear').onclick=()=>{items.forEach(x=>URL.revokeObjectURL(x.url));items=[];render()};
+function escapeHtml(s){return s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+
+make.onclick=async()=>{
+ if(!items.length)return;
+ const {jsPDF}=window.jspdf;
+ const page=document.getElementById('page').value, orient=document.getElementById('orientation').value, fit=document.getElementById('fit').value;
+ let pdf=new jsPDF({orientation:orient,unit:'mm',format:page==='original'?'a4':(page==='letter'?'letter':'a4')});
+ for(let i=0;i<items.length;i++){
+   if(i) pdf.addPage(undefined,orient);
+   const img=await loadImage(items[i].file);
+   let pw=pdf.internal.pageSize.getWidth(), ph=pdf.internal.pageSize.getHeight();
+   let margin=10, aw=pw-margin*2, ah=ph-margin*2;
+   let ratio=Math.min(aw/img.width,ah/img.height);
+   if(fit==='cover') ratio=Math.max(aw/img.width,ah/img.height);
+   if(page==='original'){pdf.deletePage(pdf.getNumberOfPages());let w=img.width*0.264583,h=img.height*0.264583;pdf.addPage([w,h],orient);pw=w;ph=h;aw=pw;ah=ph;ratio=1}
+   let w=img.width*ratio,h=img.height*ratio,x=(pw-w)/2,y=(ph-h)/2;
+   pdf.addImage(img,'JPEG',x,y,w,h,undefined,'FAST');
+ }
+ pdf.save('images-to-pdf.pdf');
+};
+function loadImage(file){return new Promise((res,rej)=>{const img=new Image();img.onload=()=>res(img);img.onerror=rej;img.src=URL.createObjectURL(file)})}
+</script>
+</body>
+</html>
